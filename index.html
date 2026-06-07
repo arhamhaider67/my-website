@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AH Nexus Deals – Daily Essentials & Latest Tech</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://s.click.aliexpress.com/e/_c3TsgfVr" rel="stylesheet" />
   <style>
     /* ─── CSS Variables ───────────────────────────────────────── */
     :root {
@@ -793,33 +793,40 @@ const grid = document.getElementById("productGrid");
 async function loadProducts() {
   const snap = await getDocs(collection(db, "products"));
 
-  grid.innerHTML += `
-  <div class="card" data-name="${p.name}" data-category="${p.category}">
-    <div class="card-img-wrap">
-      <img src="${p.image}" alt="${p.name}" loading="lazy">
-      <span class="card-badge ${p.category === 'tech' ? 'tech' : ''}">
-        ${p.category}
-      </span>
-    </div>
+  grid.innerHTML = ""; // clear old content
 
-    <div class="card-body">
-      <div class="card-category">${p.category}</div>
-      <div class="card-name">${p.name}</div>
-      <div class="card-desc">${p.description || ""}</div>
+  snap.forEach((doc) => {
+    const p = doc.data();
 
-      <div class="card-rating">
-        <span class="stars">★★★★★</span>
-        <span class="rating-count">(Firebase)</span>
-      </div>
+    grid.innerHTML += `
+      <div class="card" data-name="${p.name}" data-category="${p.category}">
+        <div class="card-img-wrap">
+          <img src="${p.image}" alt="${p.name}" loading="lazy">
+          <span class="card-badge ${p.category === 'tech' ? 'tech' : ''}">
+            ${p.category}
+          </span>
+        </div>
 
-      <div class="card-footer">
-        <div class="card-price">$${p.price}</div>
-        <div class="card-actions">
-          <a class="btn-buy" href="${p.link || '#'}" target="_blank">Buy →</a>
+        <div class="card-body">
+          <div class="card-category">${p.category}</div>
+          <div class="card-name">${p.name}</div>
+          <div class="card-desc">${p.description || ""}</div>
+
+          <div class="card-rating">
+            <span class="stars">★★★★★</span>
+            <span class="rating-count">(Firebase)</span>
+          </div>
+
+          <div class="card-footer">
+            <div class="card-price">$${p.price}</div>
+            <div class="card-actions">
+              <a class="btn-buy" href="${p.link}" target="_blank">
+                Buy →
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
     `;
   });
 }
