@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel - AH Nexus Deals</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #111;
+      color: white;
+      padding: 20px;
+    }
+    input, button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+    }
+    button {
+      background: gold;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Add Product</h2>
+
+<input id="name" placeholder="Product Name">
+<input id="price" placeholder="Price">
+<input id="category" placeholder="Category (tech/daily)">
+<input id="image" placeholder="Image URL">
+<input id="link" placeholder="Affiliate Link">
+
+<button onclick="addProduct()">Add Product</button>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "YOUR_KEY",
+  authDomain: "ah-nexus-deals.firebaseapp.com",
+  projectId: "ah-nexus-deals",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.addProduct = async function () {
+  await addDoc(collection(db, "products"), {
+    name: document.getElementById("name").value,
+    price: document.getElementById("price").value,
+    category: document.getElementById("category").value,
+    image: document.getElementById("image").value,
+    link: document.getElementById("link").value
+  });
+
+  alert("Product Added!");
+};
+</script>
+
+</body>
+</html>
