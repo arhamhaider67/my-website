@@ -663,8 +663,12 @@
     </div>
   </div>
 
-  <!-- ─── Product Grid ───────────────────────────────────── -->
-  <div class="grid" id="productGrid"></div>
+ <!-- ─── Product Grid ───────────────────────────────────── -->
+<div class="grid" id="productGrid"></div>
+
+<div class="no-results" id="noResults">
+  No products found 😕
+</div>
 
   <!-- ─── Contact Section ───────────────────────────────── -->
   <section id="contact">
@@ -777,7 +781,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/fireba
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 const firebaseConfig = {
-   apiKey: "AIzaSyAwTfQSEJGUsptS8h8f7jla7L0qPfUjZGc",
+  apiKey: "AIzaSyAwTfQSEJGUsptS8h8f7jla7L0qPfUjZGc",
   authDomain: "ah-nexus-deals.firebaseapp.com",
   projectId: "ah-nexus-deals",
   storageBucket: "ah-nexus-deals.firebasestorage.app",
